@@ -1,0 +1,42 @@
+{
+    "name": "my-app",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "@material-ui/core": "^1.5.1",
+        "@material-ui/icons": "^2.0.3",
+        "react": "^16.8.0",
+        "react-content-loader": "^6.2.0",
+        "react-dom": "^16.8.0",
+        "react-icons": "^4.4.0",
+        "react-redux": "^5.0.7",
+        "react-scripts": "1.1.4",
+        "redux": "^4.0.0",
+        "redux-logger": "^3.0.6",
+        "styled-components": "^3.4.2"
+    },
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test --env=jsdom --colors --coverage=false --roots=src/",
+        "lint": "eslint src stories public --max-warnings=0",
+        "eject": "react-scripts eject",
+        "prettier-check": "prettier --list-different \"**/*.{js,json,css}\"",
+        "prettier-fix": "prettier --write \"**/*.{js,json,css}\"",
+        "flow": "flow check --color=always",
+        "flow-annotation-check": "flow-annotation-check --list-files noflow --show-summary -x src/setupTests.js -x 'src/Testing/**' -x 'build/**' -x 'node_modules/**'"
+    },
+    "devDependencies": {
+        "enzyme": "^3.4.4",
+        "enzyme-adapter-react-16": "^1.2.0",
+        "enzyme-to-json": "^3.3.4",
+        "flow-bin": "^0.79.1",
+        "prettier": "^1.14.2",
+        "redux-mock-store": "^1.5.3"
+    },
+    "jest": {
+        "snapshotSerializers": [
+            "enzyme-to-json/serializer"
+        ]
+    }
+}

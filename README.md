@@ -1,0 +1,89 @@
+# React test for SMART-TRIBUNE
+
+## Presentation
+
+Here is a bootstrapped project oriented to test developers integration skills.  
+This **React** project already load some packages like **redux**, **material-ui**, or **styled-components**, that are the technological stack in use for some existing projects at Smart-Tribune.  
+
+You should be able to integrate some components, including unit tests, listed below.  
+Api mocks, redux actions, and reducers have already been implemented to let you focus on integration.  
+You could see them under the [Application](./src/App/Application) folder.
+
+We used class components in our example, but feel free to use functionnal components if you want to.
+
+### Steps
+
+1. Display paginated users list
+    - Load paginated data
+    - Display data table
+    - Test your components
+2. Display quick search bar
+    - Display search bar autocomplete input
+    - Load data on change
+    - Test your components
+3. _(Bonus)_ Use infinite scroll to display users
+
+### Tools
+
+- [React](https://reactjs.org/)
+- [Material UI](https://material-ui.com/)
+- [Styled Components](https://www.styled-components.com/)
+- [Jest](https://jestjs.io/)
+- [Enzyme](https://airbnb.io/enzyme/docs/api/)
+
+### Constraints
+
+For this test, we do **not allow**:
+
+- jQuery
+- .css files
+
+## Display paginated users list
+### Where to implement this
+You will find the base List component as [index.js](./src/App/UI/Users/List/index.js) under [/src/App/UI/Users/List](./src/App/UI/Users/List) folder.
+
+### Load paginated data
+To load users, your component should call:
+```js 
+dispatch(fetchUsers(new FetchUsers(page: number, perPage: number)));
+```
+This will update the `UsersListView` object avaialable through `users` prop.
+
+### Test those components
+Write some jest/enzyme tests to make sure your components will work properly.
+
+### Expected result
+This will display a paginated list of user cards.
+
+Go https://wireframe.cc/FV6WsI to see the expected result.  
+Hovering the red dotted zones will make annotations appear.
+
+With this integration, we will take a special look on alignement respect, responsivity, and cross browser compatibility (IE 11 +).  
+Your tests will also been focused, to let us know how you consider that things are just well tested. 
+
+## Display quick search bar
+### Where to implement this
+You will find the base Search component as [index.js](./src/App/UI/Users/List/index.js) under [/src/App/UI/Users/Search](./src/App/UI/Users/Search) folder.
+
+### Load data
+To filter users, your component should call:
+```js 
+dispatch(filterUsers(new FilterUsers(filter: string, maxResults: number)));
+```
+This will update the `Array<UserView>` array avaialable through `users` prop.
+
+### Test those components
+Write some jest/enzyme tests to make sure your components will work properly.
+
+### Expected result
+This will display a search bar with autocomplete input.
+
+Go https://wireframe.cc/FV6WsI to see the expected result.  
+Hovering the red dotted zones will make annotations appear.
+
+This input + icon have to be **centered horizontally and vertically**.
+
+## _(Bonus)_ Use infinite scroll to display users list
+
+Humm, pagination is not really user friendly, maybe we should use infinite scroll ?  
+Sure, but you will have to look at some additionnal packages to make it work, right ?  

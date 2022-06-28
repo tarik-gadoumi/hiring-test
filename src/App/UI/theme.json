@@ -1,0 +1,27 @@
+{
+    "colors": {
+        "primary": {
+            "main": "#2B2B5E",
+            "light": "#6B7C93",
+            "dark": "#0B0B5B",
+            "contrast": "#FFFFFF"
+        },
+        "secondary": {
+            "main": "#FFA561",
+            "light": "#FFD8AB",
+            "dark": "#DE833E",
+            "contrast": "#FFFFFF"
+        },
+        "status": {
+            "error": "#F44336",
+            "danger": "#FF9800",
+            "success": "#4CAF50"
+        }
+    },
+    "typography": {
+        "button": {
+            "fontWeight": 400,
+            "textTransform": "capitalize"
+        }
+    }
+}
