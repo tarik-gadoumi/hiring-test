@@ -2,7 +2,7 @@
 
 ## Presentation
 
-Approach adopted : Function based component 
+Approach adopted : Function based component </br>
 To do so ,i needed hooks, they were added to React in version 16.8 i had to upgrade the version of react
 ### Added Tools 
 
