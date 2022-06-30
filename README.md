@@ -62,11 +62,11 @@ it's for avoiding setState warnings on unmounted React components here is an ama
 explaining why we need to do so : ***https://www.youtube.com/watch?v=8BNdxFzMeVg&t=221s*** .
 
 To replicate the warning follow these steps : 
-    1. comment line 18 
-    2. uncomment line 20 in same file
-    3. open the app in via the command: ***npm start*** or ***npm run start***
-    4.click Button Next & click the checkbox before users load 
-    5.and voilà you go the warning
+1. comment line 18 
+2. uncomment line 20 in same file
+3. open the app in via the command: ***npm start*** or ***npm run start***
+4. click Button Next & click the checkbox before users load 
+5. and voilà you go the warning
 
 the latest version of react stop checking if a component is mounted source : **https://medium.com/doctolib/react-stop-checking-if-your-component-is-mounted-3bb2568a4934**
 
