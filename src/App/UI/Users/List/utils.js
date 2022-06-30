@@ -1,19 +1,6 @@
 import React from 'react';
 import ContentLoader from 'react-content-loader';
-function useWindowDimensions() {
-    const [windowDimensions, setWindowDimensions] = React.useState(getWindowDimensions());
-
-    React.useEffect(() => {
-        function handleResize() {
-            setWindowDimensions(getWindowDimensions());
-        }
-
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
-
-    return windowDimensions;
-}
+import { useWindowDimensions } from './customHooks';
 const ImageLoader = props => {
     const { height, width } = useWindowDimensions();
     const [size, setSize] = React.useState(0);
@@ -44,16 +31,23 @@ const ImageLoader = props => {
     );
 };
 
-function getWindowDimensions() {
-    const { innerWidth: width, innerHeight: height } = window;
-    return {
-        width,
-        height,
-    };
-}
+
 
 function captaliseFirstLetter(value) {
     return value[0].toUpperCase() + value.slice(1);
 }
-
-export { captaliseFirstLetter, ImageLoader, useWindowDimensions };
+function sleep(time) {
+    return new Promise(resolve => setTimeout(resolve, time));
+}
+const TransformToPromise = async function promise(value) {
+    return new Promise((res, rej) => {
+        res(value);
+    });
+};
+export {
+    captaliseFirstLetter,
+    ImageLoader,
+    useWindowDimensions,
+    sleep,
+    TransformToPromise,
+};

@@ -15,8 +15,8 @@ const UList = styled.ul`
     padding-inline-start: 0px;
     margin-block-start: 0em;
     //TODO: hmmm later i need to think how to implement something like this:
-    //when i click outside WrapperIconInput  AbsoluteDiv need to be set to display:none
-    //then when i click inside the input the AbsoluteDiv display should be block;
+    //when i click outside WrapperIconInput  UList need to be set to display:none
+    //then when i click inside the input the UList display should be block;
     //display: ${props => (props.testInvisibilite ? 'none' : 'block')};
 `;
 const List = styled.li`

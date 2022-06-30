@@ -2,75 +2,72 @@
 
 ## Presentation
 
-Here is a bootstrapped project oriented to test developers integration skills.  
-This **React** project already load some packages like **redux**, **material-ui**, or **styled-components**, that are the technological stack in use for some existing projects at Smart-Tribune.  
+Approach adopted : Function based component 
+To do so ,i needed hooks, they were added to React in version 16.8 i had to upgrade the version of react
+### Added Tools 
 
-You should be able to integrate some components, including unit tests, listed below.  
-Api mocks, redux actions, and reducers have already been implemented to let you focus on integration.  
-You could see them under the [Application](./src/App/Application) folder.
-
-We used class components in our example, but feel free to use functionnal components if you want to.
+- [React v16.8 (the one with hooks)](https://www.npmjs.com/package/react/v/16.8.0)
+- [react-feather (for Search icon)](https://feathericons.com/)
+- [use-debounce (for debouncing callbacks)](https://www.npmjs.com/package/use-debounce)
+- [react-input-range (input range UI for Testing purpose)](https://www.npmjs.com/package/react-input-range)
+- [react-icons (for Spinner icon )] (https://www.npmjs.com/package/react-icons)
+- [react-content-loader (for loading the svg Skeletton)](https://github.com/danilowoz/react-content-loader)
 
 ### Steps
 
-1. Display paginated users list
-    - Load paginated data
-    - Display data table
-    - Test your components
+1. Display paginated users list 
+    - Load paginated data  (done)
+    - Display data table   (done)
+    - Test your components  
 2. Display quick search bar
-    - Display search bar autocomplete input
-    - Load data on change
-    - Test your components
-3. _(Bonus)_ Use infinite scroll to display users
+    - Display search bar autocomplete input (done)
+    - Load data on change (done)
+    - Test your components 
 
-### Tools
 
-- [React](https://reactjs.org/)
-- [Material UI](https://material-ui.com/)
-- [Styled Components](https://www.styled-components.com/)
-- [Jest](https://jestjs.io/)
-- [Enzyme](https://airbnb.io/enzyme/docs/api/)
 
-### Constraints
-
-For this test, we do **not allow**:
-
-- jQuery
-- .css files
 
 ## Display paginated users list
-### Where to implement this
-You will find the base List component as [index.js](./src/App/UI/Users/List/index.js) under [/src/App/UI/Users/List](./src/App/UI/Users/List) folder.
+Instead of making a component UI based on raw static data that comes from a JSON, i prefred to do the job like if it was a real world situation.
+I mean by that, what if we were expecting data from an API and we needed to interact with it asynchronously instead synchronously ? 
+
+The solution was to transform the payload to a promise object through 
+```js 
+ TransformToPromise(payload : array)
+``` 
+function located in  [/src/App/UI/Users/List/utils.js](./src/App/UI/Users/List/utils.js) file.
+
+To simulate internet speed latency i used
+```js 
+ sleep(someValue : int)
+``` 
+function located in  [/src/App/UI/Users/List/utils.js](./src/App/UI/Users/List/utils.js) file.
+
+**lib.js** located in [/src/App/UI/Users/List/lib.js](./src/App/UI/Users/List/lib.js)
+is were i created all my styled-comppnents  
+
+**customHooks** located in [/src/App/UI/Users/List/customHooks.js](./src/App/UI/Users/List/customHooks.js)
+is were i created all my customHooks  
+
+**list.js** located in [/src/App/UI/Users/List/list.js](./src/App/UI/Users/List/list.js)
+ is were i consume all components created at **lib.js** 
+
+**index.js** located in [/src/App/UI/Users/List/index.js](./src/App/UI/Users/List/index.js)
+the final result ,
+if you wonder why i surround dispatch comming from Props width  useSafeDispatch(dispatch) ?
+it's for avoiding setState warnings on unmounted React components here is an amazing video made by the famous Kent C.Dodds
+explaining why we need to do so : ***https://www.youtube.com/watch?v=8BNdxFzMeVg&t=221s ***
+the latest version of react stop checking if a component is mounted  source : **https://medium.com/doctolib/react-stop-checking-if-your-component-is-mounted-3bb2568a4934)**
+
+
 
 ### Load paginated data
-To load users, your component should call:
-```js 
-dispatch(fetchUsers(new FetchUsers(page: number, perPage: number)));
-```
-This will update the `UsersListView` object avaialable through `users` prop.
-
-### Test those components
-Write some jest/enzyme tests to make sure your components will work properly.
-
-### Expected result
-This will display a paginated list of user cards.
-
-Go https://wireframe.cc/FV6WsI to see the expected result.  
-Hovering the red dotted zones will make annotations appear.
-
-With this integration, we will take a special look on alignement respect, responsivity, and cross browser compatibility (IE 11 +).  
-Your tests will also been focused, to let us know how you consider that things are just well tested. 
 
 ## Display quick search bar
 ### Where to implement this
-You will find the base Search component as [index.js](./src/App/UI/Users/List/index.js) under [/src/App/UI/Users/Search](./src/App/UI/Users/Search) folder.
+
 
 ### Load data
-To filter users, your component should call:
-```js 
-dispatch(filterUsers(new FilterUsers(filter: string, maxResults: number)));
-```
-This will update the `Array<UserView>` array avaialable through `users` prop.
 
 ### Test those components
 Write some jest/enzyme tests to make sure your components will work properly.
