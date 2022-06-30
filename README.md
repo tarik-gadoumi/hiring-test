@@ -1,5 +1,3 @@
-# React test for SMART-TRIBUNE
-
 ## Presentation
 
 Approach adopted : Function based component 
