@@ -35,25 +35,25 @@ The solution was to transform the payload to a promise object through
 ```js 
  TransformToPromise(payload : array)
 ``` 
-function located in  [/src/App/UI/Users/List/utils.js](./src/App/UI/Users/List/utils.js) file.
+Function located at  [/src/App/UI/Users/List/utils.js](./src/App/UI/Users/List/utils.js) file.
 
 To simulate internet speed latency i used
 ```js 
  sleep(someValue : int)
 ``` 
-function located in  [/src/App/UI/Users/List/utils.js](./src/App/UI/Users/List/utils.js) file.
+function located at  [/src/App/UI/Users/List/utils.js](./src/App/UI/Users/List/utils.js) file.
 ## Added Scripts under /src/App/UI/Users/List folder.
 ### lib.js
-here i created all my styled-comppnents  
-file located in [/src/App/UI/Users/List/lib.js](./src/App/UI/Users/List/lib.js)
+here i created all my styled-comppnents.  
+File located at [/src/App/UI/Users/List/lib.js](./src/App/UI/Users/List/lib.js)
 
 ### customHooks.js 
-here i created all my customHooks 
-file  located in [/src/App/UI/Users/List/customHooks.js](./src/App/UI/Users/List/customHooks.js)
+Here i created all my customHooks .
+File  located at [/src/App/UI/Users/List/customHooks.js](./src/App/UI/Users/List/customHooks.js)
 
 ### list.js 
-here i consume all components created at **lib.js** 
-file located in [/src/App/UI/Users/List/list.js](./src/App/UI/Users/List/list.js)
+here i consume all components created at **lib.js** .
+File located at [/src/App/UI/Users/List/list.js](./src/App/UI/Users/List/list.js)
 
 ### index.js 
 The final result :)
@@ -66,7 +66,7 @@ To replicate the warning follow these steps :
 2. uncomment line 20 in same file
 3. open the app in via the command: ***npm start*** or ***npm run start***
 4. click Button Next & click the checkbox before users load 
-5. and voilà you go the warning
+5. and voilà you get the warning
 
 the latest version of react stop checking if a component is mounted source : **https://medium.com/doctolib/react-stop-checking-if-your-component-is-mounted-3bb2568a4934**
 
