@@ -11,7 +11,7 @@ const Spinner = styled(FaSpinner)({
     right: '0px',
     bottom: '0px',
     margin: 'auto',
-    color: 'deeppink',
+    color: 'black',
     animation: `${spin} 1s linear infinite`,
     fontSize: `130%`,
 });
@@ -35,7 +35,7 @@ const WrapperPagination = styled.div`
     }
 `;
 const MaxWithWrapper = styled.div`
-    border: 1px solid black;
+    border: 3px solid #1CE4A6;
     max-width: 750px;
     min-width: 460px;
     height: 150px;
@@ -69,8 +69,11 @@ const Centered = styled.div`
     }
 `;
 const ImgWrapper = styled.div`
-    border-right: 1px solid black;
+    box-sizing: border-box;
+    border: 3px solid #1CE4A6;
+    border-right : 6px solid #1CE4A6;
     overflow: hidden;
+    position: relative;
     display: inline-flex;
     width: 150px;
     @media (max-width: 460px) {
@@ -80,7 +83,7 @@ const ImgWrapper = styled.div`
     }
 `;
 const Img = styled.img`
-    display: block;
+    // display: block;
     @media (max-width: 460px) {
         border-radius: 50%;
     }
@@ -90,7 +93,7 @@ const Right = styled.div`
     width: 150px;
     min-width: 150px;
     height: 100%;
-    border-left: 1px solid black;
+    border-left: 3px solid  #1CE4A6;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -103,12 +106,14 @@ const Button = styled.button`
     display: block;
     width: 130px;
     color: black;
+    border:none;
+    background-color: #1CE4A6;
     padding: 4px;
     font-size: 1rem;
     font-weight: ${({ theme }) => theme.typography.button.fontWeight};
     border-radius: 16px;
     &:focus {
-        outline: 3px auto blue;
+        outline: 3px auto black;
         outline-offset: 2px;
     }
 `;
@@ -175,7 +180,7 @@ const SuccessionDiv = styled.div`
             padding: 4px 12px;
         }
         & > *:first-child > *:last-child {
-            color: purple;
+            color: #1CE4A6;
             margin-top: 10px;
 
             font-size: 4vw;

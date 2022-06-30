@@ -18,11 +18,11 @@ function ListInfoFallback() {
     // const initialName = React.useRef(name).current;
 
     const fallbackListData = {
-        name: { title: 'XXX', first: 'XXX', last: 'XXX' },
+        name: { title: 'xxx', first: 'xxx', last: 'xxx' },
         loader: <ImageLoader />,
         spinner: <Spinner />,
-        email: 'XXX@XXX.XXX',
-        id: { name: 'XXX', value: 'XXX' },
+        email: 'loading....',
+        id: { name: 'xxx', value: 'xxx' },
         picture: {
             large: '',
             medium: '',

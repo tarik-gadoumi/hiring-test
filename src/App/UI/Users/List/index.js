@@ -4,8 +4,23 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import fetchUsers from '../../../Application/fetchUsers';
 import FetchUsers from '../../../Application/Query/FetchUsers';
-import { WrapperPagination, Button, Page, Pagination, Spinner } from './lib';
+import { WrapperPagination, Button, Page, Pagination } from './lib';
 import { ListView, ListInfoFallback } from './list';
+import 'react-input-range/lib/css/index.css'
+import InputRange from 'react-input-range';
+import { useDebounce } from 'use-debounce';
+function useSafeDispatch(dispatch) {
+    const isMounted = React.useRef(false);
+    React.useLayoutEffect(() => {
+        isMounted.current = true;
+        return () => {
+            isMounted.current = false;
+        };
+    }, []);
+    return React.useCallback((...args) => (isMounted.current ? dispatch(...args) : void 0), [
+        dispatch,
+    ]);
+}
 function asyncReducer(state, action) {
     switch (action.type) {
         case 'idle': {
@@ -26,32 +41,33 @@ function asyncReducer(state, action) {
     }
 }
 function useAsync(asyncCallback, initialState) {
-    const [state, myDispatch] = React.useReducer(asyncReducer, {
+    const [state, unsafeDispatch] = React.useReducer(asyncReducer, {
         status: 'idle',
         data: null,
         error: null,
         ...initialState,
     });
+    const MYsafeDispatch = useSafeDispatch(unsafeDispatch);
     React.useEffect(
         () => {
             const promise = asyncCallback();
             if (!promise) {
                 return;
             }
-            myDispatch({ type: 'pending' });
+            MYsafeDispatch({ type: 'pending' });
             promise.then(
                 dataD => {
-                    myDispatch({ type: 'resolved', data: dataD });
+                    MYsafeDispatch({ type: 'resolved', data: dataD });
                 },
                 errorD => {
-                    myDispatch({ type: 'rejected', error: errorD });
+                    MYsafeDispatch({ type: 'rejected', error: errorD });
                 },
             );
         },
         [asyncCallback],
     );
 
-    return [state, myDispatch];
+    return [state, MYsafeDispatch];
 }
 function sleep(time) {
     return new Promise(resolve => setTimeout(resolve, time));
@@ -61,12 +77,14 @@ const TransformToPromise = async function promise(value) {
         res(value);
     });
 };
-function UserListInfo() {}
-function UsersList(props) {
-    const { users, dispatch } = props;
-    const [page, setPage] = React.useState(1);
-    const [payload, setPayload] = React.useState();
 
+function App({ mountApp, speenLatency,perPage, ...props }) {
+    const { users, dispatch } = props;
+    const safeDispatch = useSafeDispatch(dispatch);
+    const [page, setPage] = React.useState(1);
+    
+    const [payload, setPayload] = React.useState();
+    const [value] = useDebounce(page, 300);
     const asyncCallback = React.useCallback(
         () => {
             if (users) {
@@ -75,10 +93,12 @@ function UsersList(props) {
         },
         [users],
     );
-    const [state, myDispatch] = useAsync(asyncCallback, {
+
+    const [state, MYsafeDispatch] = useAsync(asyncCallback, {
         status: users ? 'pending' : 'idle',
     });
     const { data, status, error } = state;
+ users ?     console.log(users.pages) : null ;
 
     function handlePrevious() {
         if (page === 1) return;
@@ -93,36 +113,113 @@ function UsersList(props) {
 
     React.useEffect(
         () => {
-            sleep(1000).then(
-                () => setPayload(dispatch(fetchUsers(new FetchUsers(page, 1))).payload),
-                myDispatch({ type: 'idle' }),
-            );
+            sleep(speenLatency).then(() => {
+                let arrived = safeDispatch(fetchUsers(new FetchUsers(page, perPage)));
+                if (arrived) {
+                    setPayload(arrived.payload);
+                }
+            }, MYsafeDispatch({ type: 'idle' }));
+
+            return () => setPayload(null);
         },
-        [page],
+        [value,perPage],
     );
 
     return (
-        <React.Fragment>
+        <div>
             {status !== 'resolved' ? (
-                <ListInfoFallback />
-            ) : (
+                Array.from(Array(perPage)).map((v,i,list)=>{
+                    return <ListInfoFallback />
+                })
+            ) : payload ? (
                 payload.map((value, i, list) => {
                     return <ListView key={value.id.value} user={value} />;
                 })
-            )}
+            ) : null}
+
             <WrapperPagination>
                 <Pagination>
                     <Button onClick={handlePrevious}>Previous</Button>
                     <Page>
                         {' '}
-                        {page} / {users ? users.pages.size : null}{' '}
+                        {/* TODO : calculate the number of users programmatically
+                          * in real world project i would send i request to the server and get 
+                          * the total number of  available users
+                          * but because my users comes from a static json where there total number is 17 
+                          * i use raw data 17
+                        */}
+                        {page} / {payload ? parseInt(17 / perPage) : 'Loading...'}{' '}
                     </Page>
                     <Button onClick={handleNext}>Next</Button>
                 </Pagination>
             </WrapperPagination>
-        </React.Fragment>
+        </div>
     );
 }
+function UsersList(props) {
+    const [mountApp, setMountApp] = React.useState(true);
+    const [speenLatency, setSpeedLatency] = React.useState(1000);
+    const [perPage,setperPage] = React.useState(2)
+    const [val2, setVal2] = React.useState([0,3000]);
+
+    return (
+        <div>
+            <label>
+                <input
+                    type="checkbox"
+                    checked={mountApp}
+                    onChange={e => setMountApp(e.target.checked)}
+                />{' '}
+                Mount Component
+            </label>
+            <hr />
+            <div>
+                <InputRange
+                    step={100}
+                    formatLabel={value => null}
+                    draggableTrack={false}
+                    allowSameValues={false}
+                    maxValue={3000}
+                    minValue={0}
+                    value={speenLatency}
+                    onChange={setSpeedLatency}
+                    onChangeComplete={args => console.log(args)}
+                />
+                <hr />
+                <label htmlFor="internet speed">
+                    Internet speed latency{' '}
+                    <span>
+                        <div>{`${speenLatency} ms`}</div>
+                    </span>
+                </label>
+            </div>
+            <hr />
+            <div>
+                <InputRange
+                    step={1}
+                    formatLabel={value => null}
+                    draggableTrack={false}
+                    allowSameValues={false}
+                    maxValue={17}
+                    minValue={1}
+                    value={perPage}
+                    onChange={setperPage}
+                    onChangeComplete={args => console.log(args)}
+                />
+                <hr />
+                <label htmlFor="internet speed">
+                   Users per page{' '}
+                    <span>
+                        <div>{`${perPage} x Users`}</div>
+                    </span>
+                </label>
+            </div>
+            <hr />
+            {mountApp ? <App mountApp={mountApp} speenLatency={speenLatency} perPage={perPage} {...props} /> : null}
+        </div>
+    );
+}
+
 const mapStateToProps = ({ usersListReducers }) => {
     return { ...usersListReducers };
 };
