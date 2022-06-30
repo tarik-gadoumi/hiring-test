@@ -94,7 +94,7 @@ just for fun instead of using colors provided by
  <StyledComponentsThemeProvider theme={theme}/>
  ```
 provider,</br>
-i decided to save my own colors in this file, then use them for styling my components
+i decided to save my own colors in this file, then use them for styling my components.</br>
 File located at [/src/App/UI/Users/Search/constants.js](./src/App/UI/Users/Search/constants.js)
 
 ### icon.js
@@ -102,6 +102,6 @@ File located at [/src/App/UI/Users/Search/constants.js](./src/App/UI/Users/Searc
 Here i create the icon component, thank's to 'react-feather' library.</br>
 File located at File located at [/src/App/UI/Users/Search/icon.js](./src/App/UI/Users/Search/icon.js)
 
-
+### lib.js
 
 
