@@ -1,3 +1,13 @@
+## Setup the Project:
+write in bash 
+```
+cd Desktop/
+git clone https://github.com/tarik-gadoumi/hiring-test.git
+cd  hiring-test
+npm install 
+
+```
+
 ## Presentation
 
 Approach adopted : Function based component </br>
@@ -75,6 +85,8 @@ the latest version of react stop checking if a component is mounted source : **h
 
 
 ## Added Scripts under /src/App/UI/Users/Search folder.
+component support  keydown ,keyUp and Enter
+
 ### search.js
 
 Here you find the UI available in [/src/App/UI/Users/Search/search.js](./src/App/UI/Users/Search/search.js).</br>
@@ -100,8 +112,21 @@ File located at [/src/App/UI/Users/Search/constants.js](./src/App/UI/Users/Searc
 ### icon.js
 
 Here i create the icon component, thank's to 'react-feather' library.</br>
-File located at File located at [/src/App/UI/Users/Search/icon.js](./src/App/UI/Users/Search/icon.js)
+File located  at [/src/App/UI/Users/Search/icon.js](./src/App/UI/Users/Search/icon.js)
 
 ### lib.js
+
+where i create some Wrappers .
+File located at [/src/App/UI/Users/Search/icon.js](./src/App/UI/Users/Search/lib.js)
+
+### customHooks.js
+Here i created all my customHooks .<br/>
+File located at [/src/App/UI/Users/Search/customHooks.js](./src/App/UI/Users/Search/customHooks.js)
+
+### index.js
+
+where everything above is consumed.
+
+File located at [/src/App/UI/Users/Search/index.js](./src/App/UI/Users/Search/index.js)
 
 
