@@ -89,7 +89,11 @@ File located at [/src/App/UI/Users/Search/VisuallyHidden.js](./src/App/UI/Users/
 
 ### constants.js
 
-just for fun instead of using colors provided by the <StyledComponentsThemeProvider theme={theme}/> provider,</br>
+just for fun instead of using colors provided by 
+```js
+ <StyledComponentsThemeProvider theme={theme}/>
+ ```
+provider,</br>
 i decided to save my own colors in this file, then use them for styling my components
 File located at [/src/App/UI/Users/Search/constants.js](./src/App/UI/Users/Search/constants.js)
 
