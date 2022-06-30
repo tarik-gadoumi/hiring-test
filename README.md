@@ -84,7 +84,7 @@ The input and icon are well centred horizontally and vertically and  available i
 ### VisuallyHidden.js
 
 Visually Hidden is used when an element needs to be available to assistive technology, but otherwise hidden. The visually hidden component hides text visually from screen, but keeps it available to assistive technologies, such as screen readers. The component shouldn't be used to hide interactive content.</br> 
-File located at File located at [/src/App/UI/Users/Search/VisuallyHidden.js](./src/App/UI/Users/Search/VisuallyHidden.js)
+File located at [/src/App/UI/Users/Search/VisuallyHidden.js](./src/App/UI/Users/Search/VisuallyHidden.js)
 
 
 ### constants.js
