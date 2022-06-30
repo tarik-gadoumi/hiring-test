@@ -81,4 +81,22 @@ Here you find the UI available in [/src/App/UI/Users/Search/search.js](./src/App
 Since it is a small component i decided to keep the created styled-component objects in the same file.</br>
 The input and icon are well centred horizontally and vertically and  available in 3 variants  small, medium, large.
 
+### VisuallyHidden.js
+
+Visually Hidden is used when an element needs to be available to assistive technology, but otherwise hidden. The visually hidden component hides text visually from screen, but keeps it available to assistive technologies, such as screen readers. The component shouldn't be used to hide interactive content 
+
+### constants.js
+
+just for fun instead of using colors provided by the <StyledComponentsThemeProvider theme={theme}/> provider
+i decided to save my own colors in this file, then use them for styling my components
+File located at [/src/App/UI/Users/Search/constants.js](./src/App/UI/Users/Search/constants.js)
+
+### icon.js
+
+Here i create the icon component, thank's to 'react-feather' library i'm familiar with
+
+File located at File located at [/src/App/UI/Users/Search/icon.js](./src/App/UI/Users/Search/icon.js)
+
+
+
 
