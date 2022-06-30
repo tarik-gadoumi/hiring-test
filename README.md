@@ -43,17 +43,17 @@ To simulate internet speed latency i used
 ``` 
 function located in  [/src/App/UI/Users/List/utils.js](./src/App/UI/Users/List/utils.js) file.
 
-**lib.js** located in [/src/App/UI/Users/List/lib.js](./src/App/UI/Users/List/lib.js)
-is were i created all my styled-comppnents  
+### lib.js
+Is were i created all my styled-comppnents  located in [/src/App/UI/Users/List/lib.js](./src/App/UI/Users/List/lib.js)
 
-**customHooks** located in [/src/App/UI/Users/List/customHooks.js](./src/App/UI/Users/List/customHooks.js)
-is were i created all my customHooks  
+### customHooks.js 
+Is were i created all my customHooks  located in [/src/App/UI/Users/List/customHooks.js](./src/App/UI/Users/List/customHooks.js)
 
-**list.js** located in [/src/App/UI/Users/List/list.js](./src/App/UI/Users/List/list.js)
- is were i consume all components created at **lib.js** 
+### list.js 
+Is were i consume all components created at **lib.js** located in [/src/App/UI/Users/List/list.js](./src/App/UI/Users/List/list.js)
 
-**index.js** located in [/src/App/UI/Users/List/index.js](./src/App/UI/Users/List/index.js)
-the final result ,
+### index.js 
+the final result 
 if you wonder why i surround dispatch comming from Props width  useSafeDispatch(dispatch) ?
 it's for avoiding setState warnings on unmounted React components here is an amazing video made by the famous Kent C.Dodds
 explaining why we need to do so : ***https://www.youtube.com/watch?v=8BNdxFzMeVg&t=221s ***
