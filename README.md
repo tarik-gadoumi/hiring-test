@@ -27,7 +27,7 @@ To do so, i needed hooks, they were added to React in version 16.8, i had to upg
 
 ## Display paginated users list
 Instead of making a component UI based on raw static data that is coming from a JSON, i prefred to do the job like if it was a real world situation.
-I mean by that, what if we were expecting data from an API and we needed to interact with it asynchronously instead synchronously ? 
+I mean by that, what if we were expecting data from an API and we needed to interact with it asynchronously instead of synchronously ? 
 
 The solution was to transform the payload to a promise object through 
 ```js 
@@ -72,12 +72,13 @@ the latest version of react stop checking if a component is mounted source : **h
 
 
 ## Display quick search bar
-### Where to implement this
 
 
-### Load data
+## Added Scripts under /src/App/UI/Users/Search folder.
+### search.js
 
+Here you find the UI available in [/src/App/UI/Users/Search/search.js](./src/App/UI/Users/Search/search.js).</br>
+Since it is a small component i decided to keep the created styled-component objects in the same file.</br>
+The input and icon are well centred horizontally and vertically and  available in 3 variants  small, medium, large.
 
-
-This input + icon have to be **centered horizontally and vertically**.
 
