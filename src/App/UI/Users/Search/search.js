@@ -14,7 +14,7 @@ const STYLES = {
     },
     large: {
         fontSize: 18,
-        iconSize: 24,
+        iconSize: 44,
         borderThikness: 2,
         height: 36,
         strokeWidth: 2,

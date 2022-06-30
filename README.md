@@ -14,13 +14,13 @@ To do so, i needed hooks, they were added to React in version 16.8, i had to upg
 ### Steps
 
 1. Display paginated users list 
-    - Load paginated data  (done)
-    - Display data table   (done)
-    - Test your components  
+    - Load paginated data  ***(done)***
+    - Display data table   ***(done)***
+    - Test your components  ***in progress***
 2. Display quick search bar
-    - Display search bar autocomplete input (done)
-    - Load data on change (done)
-    - Test your components 
+    - Display search bar autocomplete input ***(done)***
+    - Load data on change ***(done)***
+    - Test your components ***in progress***
 
 
 
