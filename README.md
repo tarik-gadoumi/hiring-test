@@ -1,18 +1,17 @@
 ## Setup the Project:
 write in bash 
 ```
-cd Desktop/
 git clone https://github.com/tarik-gadoumi/hiring-test.git
 cd  hiring-test
 ```
 ```
-npm install  
+npm install  ```
+yarn install
+```
 
 ```
 or 
-```
-yarn install
-```
+
 
 ## Presentation
 
