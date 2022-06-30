@@ -20,7 +20,7 @@ function App({ mountApp, speenLatency, perPage, ...props }) {
     //const dispatch = unsafeDispatch ;
 
     const [page, setPage] = React.useState(1);
-
+    let dynamicNbPage = parseInt(17 / perPage)
     const [payload, setPayload] = React.useState();
     const [value] = useDebounce(page, 300);
     const asyncCallback = React.useCallback(
@@ -36,14 +36,14 @@ function App({ mountApp, speenLatency, perPage, ...props }) {
         status: users ? 'pending' : 'idle',
     });
     const { data, status, error } = state;
-
+   
     function handlePrevious() {
         if (page === 1) return;
         setPage(p => p - 1);
     }
     function handleNext() {
         if (users) {
-            if (users.pages.size === page) return;
+            if (dynamicNbPage === page) return;
         }
         setPage(p => p + 1);
     }
@@ -66,6 +66,8 @@ function App({ mountApp, speenLatency, perPage, ...props }) {
         <div>
             {status !== 'resolved'
                 ? Array.from(Array(perPage)).map((v, i, list) => {
+                    //the rule say do not pass index as a key !
+                    //this is one of the use cases where it's okay ! 
                       return <ListInfoFallback  key={i}/>;
                   })
                 : payload
@@ -81,9 +83,9 @@ function App({ mountApp, speenLatency, perPage, ...props }) {
                         {' '}
                         {/* TODO : calculate the number of users programmatically
                           * but because my users comes from a static json where there total number is 17 
-                          * i use raw data 17
+                          * i'll use raw intiger 17
                         */}
-                        {page} / {payload ? parseInt(17 / perPage) : 'Loading...'}{' '}
+                        {page} / {payload ? dynamicNbPage : 'Loading...'}{' '}
                     </Page>
                     <Button onClick={handleNext}>Next</Button>
                 </Pagination>

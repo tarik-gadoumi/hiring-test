@@ -10,9 +10,9 @@ import { useDebounce } from 'use-debounce';
 import IconInput from './search';
 
 function UsersSearch(props) {
-    //some improvement i need to do later :
+    //some improvements i need to do later :
     //because my solution is based on direved state 
-    //the best pattern to follow here ise the useReducer 
+    //the best pattern to follow here is the useReducer 
 
     const { users, dispatch } = props;
     const [query, setQuery] = React.useState('');
@@ -34,7 +34,11 @@ function UsersSearch(props) {
     React.useEffect(
         () => {
             if(!query){ 
+                
                 return 
+            }
+            if(!query  && users) {
+                users.length = 0
             }
          
             if (queried && query) {

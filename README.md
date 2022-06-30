@@ -57,7 +57,7 @@ File located at [/src/App/UI/Users/List/list.js](./src/App/UI/Users/List/list.js
 
 ### index.js 
 The final result :).<br/>
-File located at [/src/App/UI/Users/List/index.js](./src/App/UI/Users/List/index.js)
+File located at [/src/App/UI/Users/List/index.js](./src/App/UI/Users/List/index.js).<br/>
 if you wonder why i surround dispatch comming from Props with  useSafeDispatch(dispatch) ?
 it's for avoiding setState warnings on unmounted React components here is an amazing video made by the famous Kent C.Dodds
 explaining why we need to do so : ***https://www.youtube.com/watch?v=8BNdxFzMeVg&t=221s*** .
@@ -66,7 +66,7 @@ To replicate the warning follow these steps :
 1. comment line 18 
 2. uncomment line 20 in same file
 3. open the app in via the command: ***npm start*** or ***npm run start***
-4. click Button Next & click the checkbox before users load 
+4. click Button Next & toggle the checkbox before users load 
 5. and voilà you get the warning
 
 the latest version of react stop checking if a component is mounted source : **https://medium.com/doctolib/react-stop-checking-if-your-component-is-mounted-3bb2568a4934**
