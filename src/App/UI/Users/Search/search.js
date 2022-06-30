@@ -7,7 +7,7 @@ import VisuallyHidden from './VisuallyHidden';
 const STYLES = {
     small: {
         fontSize: 14,
-        iconSize: 16,
+        iconSize: 30,
         borderThikness: 1,
         height: 24,
         strokeWidth: 1,
@@ -32,10 +32,9 @@ const IconInput = ({
     if (!styles) {
         throw new Error(`no style found  for ${size} size`);
     }
-    
+
     return (
-        <Wrapper>
-            <VisuallyHidden>{label}</VisuallyHidden>
+        <WrapperAll>
             <IconWrapper
                 style={{
                     '--size': styles.iconSize + 'px',
@@ -43,18 +42,24 @@ const IconInput = ({
             >
                 <Icon id={icon} strokeWidth={styles.strokeWidth} size={styles.iconSize} />
             </IconWrapper>
-            <TextInput
-                {...props}
-                style={{
-                    '--width': width + 'px',
-                    '--height': styles.height / 16 + 'rem',
-                    '--border-thikness': styles.borderThikness + 'px',
-                    '--font-size': styles.fontSize / 16 + 'rem',
-                }}
-            />
-        </Wrapper>
+            <Wrapper>
+                <VisuallyHidden>{label}</VisuallyHidden>
+                <TextInput
+                    {...props}
+                    style={{
+                        '--width': width + 'px',
+                        '--height': styles.height / 16 + 'rem',
+                        '--border-thikness': styles.borderThikness + 'px',
+                        '--font-size': styles.fontSize / 16 + 'rem',
+                    }}
+                />
+            </Wrapper>
+        </WrapperAll>
     );
 };
+const WrapperAll = styled.div`
+    display :flex;
+`
 const Wrapper = styled.label`
     display: block;
     position: relative;
@@ -65,10 +70,8 @@ const Wrapper = styled.label`
     }
 `;
 const IconWrapper = styled.div`
-    position: absolute;
-    top: 0;
-    bottom: 0;
     margin: auto 0;
+    margin-right:10px;
     height: var(--size);
     width: var(--size);
 `;
@@ -78,7 +81,7 @@ const TextInput = styled.input`
     height: var(--height);
     border: none;
     border: var(--border-thikness) solid ${COLORS.black};
-    padding-left: var(--height);
+    // padding-left: var(--height);
     color: inherit;
     font-weight: 700;
     &::placeholder {

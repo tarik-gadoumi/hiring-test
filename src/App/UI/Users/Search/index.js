@@ -10,7 +10,7 @@ import { useDebounce } from 'use-debounce';
 import IconInput from './search';
 
 function UsersSearch(props) {
-    //some improvements i need to do later :
+    //alot of improvements i need to do later :
     //because my solution is based on direved state 
     //the best pattern to follow here is the useReducer 
 

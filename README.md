@@ -1,7 +1,7 @@
 ## Presentation
 
 Approach adopted : Function based component </br>
-To do so ,i needed hooks, they were added to React in version 16.8 i had to upgrade the version of react
+To do so, i needed hooks, they were added to React in version 16.8, i had to upgrade the version of react
 ### Added Tools 
 
 - [React v16.8 (the one with hooks)](https://www.npmjs.com/package/react/v/16.8.0)
@@ -26,7 +26,7 @@ To do so ,i needed hooks, they were added to React in version 16.8 i had to upgr
 
 
 ## Display paginated users list
-Instead of making a component UI based on raw static data that comes from a JSON, i prefred to do the job like if it was a real world situation.
+Instead of making a component UI based on raw static data that is coming from a JSON, i prefred to do the job like if it was a real world situation.
 I mean by that, what if we were expecting data from an API and we needed to interact with it asynchronously instead synchronously ? 
 
 The solution was to transform the payload to a promise object through 
