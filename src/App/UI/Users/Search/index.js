@@ -4,7 +4,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import filterUsers from '../../../Application/filterUsers';
 import FilterUsers from '../../../Application/Query/FilterUsers';
-import { WrapperIconInput, AbsoluteDiv, List, UList } from './lib';
+import { WrapperIconInput, AbsoluteDiv, List, UList,Wrapper } from './lib';
 import { useKeyPress } from './customHooks';
 import { useDebounce } from 'use-debounce';
 import IconInput from './search';
@@ -84,6 +84,7 @@ function UsersSearch(props) {
     }
 
     return (
+        <Wrapper>
         <WrapperIconInput>
             <IconInput
                 onChange={handleChange}
@@ -116,6 +117,7 @@ function UsersSearch(props) {
                 </UList>
             </AbsoluteDiv>
         </WrapperIconInput>
+        </Wrapper>
     );
 }
 const mapStateToProps = ({ usersSearchReducers }) => {

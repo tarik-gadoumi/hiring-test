@@ -28,7 +28,14 @@ const List = styled.li`
     }
 `;
 
+const Wrapper = styled.div`
+width : 100%;
+height : 90px;
+display: flex;
+align-items: center;
+justify-content: center;
+
+`
 
 
-
-export { WrapperIconInput, AbsoluteDiv, List, UList };
+export { WrapperIconInput, AbsoluteDiv, List, UList ,Wrapper};

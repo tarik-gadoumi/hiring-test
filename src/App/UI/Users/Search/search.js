@@ -26,7 +26,7 @@ const IconInput = ({
     width = 250,
     size,
 
-    ...delegated
+    ...props
 }) => {
     const styles = STYLES[size];
     if (!styles) {
@@ -44,7 +44,7 @@ const IconInput = ({
                 <Icon id={icon} strokeWidth={styles.strokeWidth} size={styles.iconSize} />
             </IconWrapper>
             <TextInput
-                {...delegated}
+                {...props}
                 style={{
                     '--width': width + 'px',
                     '--height': styles.height / 16 + 'rem',

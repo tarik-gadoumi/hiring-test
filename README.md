@@ -79,14 +79,7 @@ the latest version of react stop checking if a component is mounted source : **h
 
 ### Load data
 
-### Test those components
-Write some jest/enzyme tests to make sure your components will work properly.
 
-### Expected result
-This will display a search bar with autocomplete input.
-
-Go https://wireframe.cc/FV6WsI to see the expected result.  
-Hovering the red dotted zones will make annotations appear.
 
 This input + icon have to be **centered horizontally and vertically**.
 
