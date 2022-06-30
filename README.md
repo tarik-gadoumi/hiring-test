@@ -4,13 +4,12 @@ write in bash
 git clone https://github.com/tarik-gadoumi/hiring-test.git
 cd  hiring-test
 ```
-```
-npm install  ```
-yarn install
-```
 
 ```
-or 
+npm install  or yarn install
+
+```
+
 
 
 ## Presentation
