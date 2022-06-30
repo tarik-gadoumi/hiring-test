@@ -42,27 +42,33 @@ To simulate internet speed latency i used
  sleep(someValue : int)
 ``` 
 function located in  [/src/App/UI/Users/List/utils.js](./src/App/UI/Users/List/utils.js) file.
-## Added Scripts in 
+## Added Scripts under /src/App/UI/Users/List folder.
 ### lib.js
-Is were i created all my styled-comppnents  
+here i created all my styled-comppnents  
 file located in [/src/App/UI/Users/List/lib.js](./src/App/UI/Users/List/lib.js)
 
 ### customHooks.js 
-Is were i created all my customHooks 
+here i created all my customHooks 
 file  located in [/src/App/UI/Users/List/customHooks.js](./src/App/UI/Users/List/customHooks.js)
 
 ### list.js 
-Is were i consume all components created at **lib.js** 
+here i consume all components created at **lib.js** 
 file located in [/src/App/UI/Users/List/list.js](./src/App/UI/Users/List/list.js)
 
 ### index.js 
 The final result :)
-if you wonder why i surround dispatch comming from Props width  useSafeDispatch(dispatch) ?
+if you wonder why i surround dispatch comming from Props with  useSafeDispatch(dispatch) ?
 it's for avoiding setState warnings on unmounted React components here is an amazing video made by the famous Kent C.Dodds
 explaining why we need to do so : ***https://www.youtube.com/watch?v=8BNdxFzMeVg&t=221s*** .
 
-the latest version of react stop checking if a component is mounted source : **https://medium.com/doctolib/react-stop-checking-if-your-component-is-mounted-3bb2568a4934**
+To replicate the warning follow these steps : 
+    1. comment line 18 
+    2. uncomment line 20 in same file
+    3. open the app in via the command: ***npm start*** or ***npm run start***
+    4.click Button Next & click the checkbox before users load 
+    5.and voilà you go the warning
 
+the latest version of react stop checking if a component is mounted source : **https://medium.com/doctolib/react-stop-checking-if-your-component-is-mounted-3bb2568a4934**
 
 
 

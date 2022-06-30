@@ -13,8 +13,12 @@ import { useDebounce } from 'use-debounce';
 import { useSafeDispatch, useAsync } from './customHooks';
 
 function App({ mountApp, speenLatency, perPage, ...props }) {
-    const { users, dispatch } = props;
-    const safeDispatch = useSafeDispatch(dispatch);
+    const { users, dispatch : unsafeDispatch } = props;
+    // 🌟  comment line  bellow 
+    const dispatch = useSafeDispatch(unsafeDispatch);
+    //🌟  uncomment line  bellow
+    //const dispatch = unsafeDispatch ;
+
     const [page, setPage] = React.useState(1);
 
     const [payload, setPayload] = React.useState();
@@ -47,7 +51,7 @@ function App({ mountApp, speenLatency, perPage, ...props }) {
     React.useEffect(
         () => {
             sleep(speenLatency).then(() => {
-                let arrived = safeDispatch(fetchUsers(new FetchUsers(page, perPage)));
+                let arrived = dispatch(fetchUsers(new FetchUsers(page, perPage)));
                 if (arrived) {
                     setPayload(arrived.payload);
                 }
