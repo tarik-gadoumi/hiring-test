@@ -19,8 +19,19 @@ function App({ mountApp, speenLatency, perPage, ...props }) {
     //🌟  uncomment line  bellow
     //const dispatch = unsafeDispatch ;
     const [page, setPage] = React.useState(1);
- 
+    
+
     let dynamicNbPage = parseInt(17 / perPage);
+    const prevKeyRef = React.useRef(dynamicNbPage);
+    React.useEffect(
+        () => {
+            const prevKey = prevKeyRef.current;
+            if (prevKey !== dynamicNbPage) {
+              setPage(1)
+            }
+        },
+        [dynamicNbPage],
+    );
     const [payload, setPayload] = React.useState();
     const [value] = useDebounce(page, 300);
     const asyncCallback = React.useCallback(

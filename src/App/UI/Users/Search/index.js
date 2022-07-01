@@ -17,7 +17,7 @@ function UsersSearch(props) {
     const { users, dispatch } = props;
     const [query, setQuery] = React.useState('');
     const [queried, setQueried] = React.useState(false);
-    const [value] = useDebounce(query, 300);
+    // const [value] = useDebounce(query, 300);
     
     const [selected, setSelected] = React.useState(false);
     const [cursor, setCursor] = React.useState(0);
@@ -33,21 +33,18 @@ function UsersSearch(props) {
 
     React.useEffect(
         () => {
-            if(!query){ 
-                
+            if(!query && !users){ 
                 return 
             }
-            if(!query  && users) {
+            if(users && !query) {
                 users.length = 0
             }
-         
             if (queried && query) {
-                dispatch(filterUsers(new FilterUsers(value, 10)));
-                return;
+                dispatch(filterUsers(new FilterUsers(query, 10)));
             }
         
         },
-        [query,queried,selected],
+        [query,queried],
     );
 
     React.useEffect(
