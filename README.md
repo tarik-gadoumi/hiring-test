@@ -76,7 +76,7 @@ File located at [/src/App/UI/Users/List/list.js](./src/App/UI/Users/List/list.js
 The final result :).<br/>
 File located at [/src/App/UI/Users/List/index.js](./src/App/UI/Users/List/index.js).<br/>
 if you wonder why i surround dispatch comming from Props with  useSafeDispatch(dispatch) ?
-it's for avoiding setState warnings on unmounted React components here is an amazing video made by the famous Kent C.Dodds
+it's for avoiding setState warnings on unmounted React components here is an amazing video made by the amazing instructor Kent C.Dodds
 explaining why we need to do so : ***https://www.youtube.com/watch?v=8BNdxFzMeVg&t=221s*** .
 
 To replicate the warning follow these steps : 
