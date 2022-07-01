@@ -21,7 +21,7 @@ const UList = styled.ul`
 `;
 const List = styled.li`
     list-style: none;
-
+    z-index: 999;
     &:hover {
         background-color: lightgray;
         cursor: pointer;
