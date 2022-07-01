@@ -64,7 +64,7 @@ function App({ mountApp, speedLatency, perPage, ...props }) {
                     mySafeDispatch({ type: 'resolved' })
                 }
             });
-             //return () => mySafeDispatch({ type: 'idle' });
+             return () => mySafeDispatch({ type: 'idle' });
         },
         [value, perPage],
     );
