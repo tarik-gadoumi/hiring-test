@@ -19,8 +19,7 @@ function App({ mountApp, speedLatency, perPage, ...props }) {
     //🌟  uncomment line  bellow
     //const dispatch = unsafeDispatch ;
     const [page, setPage] = React.useState(1);
-    let dynamicNbPage = perPage === 1 ? parseInt(17 / perPage) : parseInt(17 / perPage)+1;
-
+    let dynamicNbPage = perPage === 1 ? parseInt(17 / perPage) :perPage === 17 ?  1 :parseInt(17 / perPage) + 1;
     //here i m setting the page number for everry input range toggle (from line 24 to 34)
     const prevKeyRef = React.useRef(dynamicNbPage);
     React.useEffect(
@@ -64,12 +63,12 @@ function App({ mountApp, speedLatency, perPage, ...props }) {
                     setPayload(arrived.payload);
                 }
             }, mySafeDispatch({ type: 'idle' }));
-            return () => setPayload(null);
+            // return () => setPayload(null);
         },
         [value, perPage],
     );
     payload ? console.log(payload) : null;
-    console.log(page)
+    console.log(status);
     return (
         <div style={{ isolation: 'isolate', zIndex: -99999 }}>
             {status !== 'resolved'
@@ -126,7 +125,8 @@ function UsersList(props) {
                 />
                 <hr />
                 <label htmlFor="internet speed">
-                    Internet speed latency (try to increase i it so u can see how the component look's like when loading status is "Pending")
+                    Internet speed latency (try to increase i it so u can see how the component
+                    look's like when loading status is "Pending")
                     <span>
                         <div>{`${speedLatency} ms`}</div>
                         <span>
