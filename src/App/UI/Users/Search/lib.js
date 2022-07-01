@@ -7,9 +7,12 @@ const AbsoluteDiv = styled.div`
     position: absolute;
     right: 0;
     width: 250px;
-    height: 100px;
+    height: 70px;
     overflow-y: auto;
     margin-top: 5px;
+    z-index: 9999;
+    padding: 3px;
+   
 `;
 const UList = styled.ul`
     padding-inline-start: 0px;
@@ -21,7 +24,7 @@ const UList = styled.ul`
 `;
 const List = styled.li`
     list-style: none;
-    z-index: 999;
+
     &:hover {
         background-color: lightgray;
         cursor: pointer;
@@ -34,6 +37,9 @@ height : 90px;
 display: flex;
 align-items: center;
 justify-content: center;
+isolation:"isolate";
+
+
 
 `
 

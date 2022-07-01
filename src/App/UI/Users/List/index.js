@@ -13,14 +13,14 @@ import { useDebounce } from 'use-debounce';
 import { useSafeDispatch, useAsync } from './customHooks';
 
 function App({ mountApp, speenLatency, perPage, ...props }) {
-    const { users, dispatch : unsafeDispatch } = props;
-    // 🌟  comment line  bellow 
+    const { users, dispatch: unsafeDispatch } = props;
+    // 🌟  comment line  bellow
     const dispatch = useSafeDispatch(unsafeDispatch);
     //🌟  uncomment line  bellow
     //const dispatch = unsafeDispatch ;
-
     const [page, setPage] = React.useState(1);
-    let dynamicNbPage = parseInt(17 / perPage)
+ 
+    let dynamicNbPage = parseInt(17 / perPage);
     const [payload, setPayload] = React.useState();
     const [value] = useDebounce(page, 300);
     const asyncCallback = React.useCallback(
@@ -31,12 +31,10 @@ function App({ mountApp, speenLatency, perPage, ...props }) {
         },
         [users],
     );
-
     const [state, mySafeDispatch] = useAsync(asyncCallback, {
         status: users ? 'pending' : 'idle',
     });
     const { data, status, error } = state;
-   
     function handlePrevious() {
         if (page === 1) return;
         setPage(p => p - 1);
@@ -47,7 +45,6 @@ function App({ mountApp, speenLatency, perPage, ...props }) {
         }
         setPage(p => p + 1);
     }
-
     React.useEffect(
         () => {
             sleep(speenLatency).then(() => {
@@ -56,19 +53,17 @@ function App({ mountApp, speenLatency, perPage, ...props }) {
                     setPayload(arrived.payload);
                 }
             }, mySafeDispatch({ type: 'idle' }));
-
             return () => setPayload(null);
         },
         [value, perPage],
     );
-
     return (
-        <div>
+        <div style={{ isolation: 'isolate', zIndex: -99999 }}>
             {status !== 'resolved'
                 ? Array.from(Array(perPage)).map((v, i, list) => {
-                    //the rule say do not pass index as a key !
-                    //this is one of the use cases where it's okay ! 
-                      return <ListInfoFallback  key={i}/>;
+                      //the rule say do not pass index as a key !
+                      //this is one of the use cases where it's okay !
+                      return <ListInfoFallback key={i} />;
                   })
                 : payload
                     ? payload.map((value, i, list) => {
@@ -81,10 +76,6 @@ function App({ mountApp, speenLatency, perPage, ...props }) {
                     <Button onClick={handlePrevious}>Previous</Button>
                     <Page>
                         {' '}
-                        {/* TODO : calculate the number of users programmatically
-                          * but because my users comes from a static json where there total number is 17 
-                          * i'll use raw intiger 17
-                        */}
                         {page} / {payload ? dynamicNbPage : 'Loading...'}{' '}
                     </Page>
                     <Button onClick={handleNext}>Next</Button>
@@ -97,9 +88,8 @@ function UsersList(props) {
     const [mountApp, setMountApp] = React.useState(true);
     const [speenLatency, setSpeedLatency] = React.useState(1000);
     const [perPage, setperPage] = React.useState(2);
-
     return (
-        <div>
+        <div style={{ marginTop: '60px' }}>
             <label>
                 <input
                     type="checkbox"
@@ -157,9 +147,7 @@ function UsersList(props) {
         </div>
     );
 }
-
 const mapStateToProps = ({ usersListReducers }) => {
     return { ...usersListReducers };
 };
-
 export default connect(mapStateToProps)(UsersList);
