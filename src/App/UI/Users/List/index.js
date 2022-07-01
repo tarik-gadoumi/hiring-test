@@ -53,6 +53,7 @@ function App({ mountApp, speedLatency, perPage, ...props }) {
         if (users) {
             if (dynamicNbPage === page) return;
         }
+        mySafeDispatch({ type: 'idle' })
         setPage(p => p + 1);
     }
     React.useEffect(
@@ -64,7 +65,6 @@ function App({ mountApp, speedLatency, perPage, ...props }) {
                     mySafeDispatch({ type: 'resolved' })
                 }
             });
-             return () => mySafeDispatch({ type: 'idle' });
         },
         [value, perPage],
     );
