@@ -61,9 +61,10 @@ function App({ mountApp, speedLatency, perPage, ...props }) {
                 let arrived = dispatch(fetchUsers(new FetchUsers(page, perPage)));
                 if (arrived) {
                     setPayload(arrived.payload);
+                    mySafeDispatch({ type: 'resolved' })
                 }
-            }, mySafeDispatch({ type: 'idle' }));
-            // return () => setPayload(null);
+            });
+             //return () => mySafeDispatch({ type: 'idle' });
         },
         [value, perPage],
     );
