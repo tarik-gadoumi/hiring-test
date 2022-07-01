@@ -47,6 +47,7 @@ function App({ mountApp, speedLatency, perPage, ...props }) {
     const { data, status, error } = state;
     function handlePrevious() {
         if (page === 1) return;
+        mySafeDispatch({ type: 'idle' })
         setPage(p => p - 1);
     }
     function handleNext() {
