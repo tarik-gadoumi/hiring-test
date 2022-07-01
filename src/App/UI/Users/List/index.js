@@ -20,7 +20,7 @@ function App({ mountApp, speedLatency, perPage, ...props }) {
     //const dispatch = unsafeDispatch ;
     const [page, setPage] = React.useState(1);
     let dynamicNbPage = perPage === 1 ? parseInt(17 / perPage) :perPage === 17 ?  1 :parseInt(17 / perPage) + 1;
-    //here i m setting the page number for everry input range toggle (from line 24 to 34)
+    //here i m setting the page number for everry input range toggle (from line 24 to 33)
     const prevKeyRef = React.useRef(dynamicNbPage);
     React.useEffect(
         () => {
