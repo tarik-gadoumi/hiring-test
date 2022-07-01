@@ -12,22 +12,22 @@ import InputRange from 'react-input-range';
 import { useDebounce } from 'use-debounce';
 import { useSafeDispatch, useAsync } from './customHooks';
 
-function App({ mountApp, speenLatency, perPage, ...props }) {
+function App({ mountApp, speedLatency, perPage, ...props }) {
     const { users, dispatch: unsafeDispatch } = props;
     // 🌟  comment line  bellow
     const dispatch = useSafeDispatch(unsafeDispatch);
     //🌟  uncomment line  bellow
     //const dispatch = unsafeDispatch ;
     const [page, setPage] = React.useState(1);
-    
+    let dynamicNbPage = perPage === 1 ? parseInt(17 / perPage) : parseInt(17 / perPage)+1;
 
-    let dynamicNbPage = parseInt(17 / perPage);
+    //here i m setting the page number for everry input range toggle (from line 24 to 34)
     const prevKeyRef = React.useRef(dynamicNbPage);
     React.useEffect(
         () => {
             const prevKey = prevKeyRef.current;
             if (prevKey !== dynamicNbPage) {
-              setPage(1)
+                setPage(1);
             }
         },
         [dynamicNbPage],
@@ -58,7 +58,7 @@ function App({ mountApp, speenLatency, perPage, ...props }) {
     }
     React.useEffect(
         () => {
-            sleep(speenLatency).then(() => {
+            sleep(speedLatency).then(() => {
                 let arrived = dispatch(fetchUsers(new FetchUsers(page, perPage)));
                 if (arrived) {
                     setPayload(arrived.payload);
@@ -68,12 +68,14 @@ function App({ mountApp, speenLatency, perPage, ...props }) {
         },
         [value, perPage],
     );
+    payload ? console.log(payload) : null;
+    console.log(page)
     return (
         <div style={{ isolation: 'isolate', zIndex: -99999 }}>
             {status !== 'resolved'
                 ? Array.from(Array(perPage)).map((v, i, list) => {
                       //the rule say do not pass index as a key !
-                      //this is one of the use cases where it's okay !
+                      //is this  one of the use cases where it's okay ?!
                       return <ListInfoFallback key={i} />;
                   })
                 : payload
@@ -97,7 +99,7 @@ function App({ mountApp, speenLatency, perPage, ...props }) {
 }
 function UsersList(props) {
     const [mountApp, setMountApp] = React.useState(true);
-    const [speenLatency, setSpeedLatency] = React.useState(1000);
+    const [speedLatency, setSpeedLatency] = React.useState(300);
     const [perPage, setperPage] = React.useState(2);
     return (
         <div style={{ marginTop: '60px' }}>
@@ -118,15 +120,24 @@ function UsersList(props) {
                     allowSameValues={false}
                     maxValue={3000}
                     minValue={0}
-                    value={speenLatency}
+                    value={speedLatency}
                     onChange={setSpeedLatency}
                     onChangeComplete={args => console.log(args)}
                 />
                 <hr />
                 <label htmlFor="internet speed">
-                    Internet speed latency{' '}
+                    Internet speed latency (try to increase i it so u can see how the component look's like when loading status is "Pending")
                     <span>
-                        <div>{`${speenLatency} ms`}</div>
+                        <div>{`${speedLatency} ms`}</div>
+                        <span>
+                            {speedLatency > 1200 ? (
+                                <span style={{ backgroundColor: '#DC143C' }}>Bad ❌</span>
+                            ) : speedLatency > 300 ? (
+                                <span style={{ backgroundColor: 'Yellow' }}>Slow 😔</span>
+                            ) : (
+                                <span style={{ backgroundColor: 'lightgreen' }}>Good 👍</span>
+                            )}
+                        </span>
                     </span>
                 </label>
             </div>
@@ -153,7 +164,7 @@ function UsersList(props) {
             </div>
             <hr />
             {mountApp ? (
-                <App mountApp={mountApp} speenLatency={speenLatency} perPage={perPage} {...props} />
+                <App mountApp={mountApp} speedLatency={speedLatency} perPage={perPage} {...props} />
             ) : null}
         </div>
     );

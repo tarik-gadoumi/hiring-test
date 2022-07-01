@@ -12,7 +12,6 @@ const AbsoluteDiv = styled.div`
     margin-top: 5px;
     z-index: 9999;
     padding: 3px;
-   
 `;
 const UList = styled.ul`
     padding-inline-start: 0px;
@@ -32,16 +31,12 @@ const List = styled.li`
 `;
 
 const Wrapper = styled.div`
-width : 100%;
-height : 90px;
-display: flex;
-align-items: center;
-justify-content: center;
-isolation:"isolate";
+    width: 100%;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    isolation: 'isolate';
+`;
 
-
-
-`
-
-
-export { WrapperIconInput, AbsoluteDiv, List, UList ,Wrapper};
+export { WrapperIconInput, AbsoluteDiv, List, UList, Wrapper };
