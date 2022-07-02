@@ -69,8 +69,7 @@ function App({ mountApp, speedLatency, perPage, ...props }) {
         },
         [value, perPage],
     );
-    payload ? console.log(payload) : null;
-    console.log(status);
+    
     return (
         <div style={{ isolation: 'isolate', zIndex: -99999 }}>
             {status !== 'resolved'
