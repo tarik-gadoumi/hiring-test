@@ -6,7 +6,7 @@ import filterUsers from '../../../Application/filterUsers';
 import FilterUsers from '../../../Application/Query/FilterUsers';
 import { WrapperIconInput, AbsoluteDiv, List, UList, Wrapper } from './lib';
 import { useKeyPress } from './customHooks';
-// import { useDebounce } from 'use-debounce';
+//import { useDebounce } from 'use-debounce';
 import IconInput from './search';
 
 function UsersSearch(props) {
@@ -63,6 +63,7 @@ function UsersSearch(props) {
     React.useEffect(
         () => {
             if (users && enterPress && queried) {
+                if(!users[cursor]) return 
                 setQuery(users[cursor].firstname + ' ' + users[cursor].lastname);
                 setQueried(false);
                 setSelected(true);

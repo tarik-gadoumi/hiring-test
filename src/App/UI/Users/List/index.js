@@ -43,7 +43,7 @@ function App({ mountApp, speedLatency, perPage, ...props }) {
     );
     const [state, mySafeDispatch] = useAsync(asyncCallback);
     const {data,status} = state;
-    console.log(status ,'--->', data)
+
     function handlePrevious() {
         if (page === 1) return;
         mySafeDispatch({ type: 'idle' })
