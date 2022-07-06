@@ -41,10 +41,8 @@ function App({ mountApp, speedLatency, perPage, ...props }) {
         },
         [users],
     );
-    const [state, mySafeDispatch] = useAsync(asyncCallback, {
-        status: users ? 'pending' : 'idle',
-    });
-    const {  status } = state;
+    const [state, mySafeDispatch] = useAsync(asyncCallback);
+    const {status} = state;
     function handlePrevious() {
         if (page === 1) return;
         mySafeDispatch({ type: 'idle' })
@@ -60,6 +58,7 @@ function App({ mountApp, speedLatency, perPage, ...props }) {
     React.useEffect(
         () => {
             sleep(speedLatency).then(() => {
+                mySafeDispatch({ type: 'pending' })
                 let arrived = dispatch(fetchUsers(new FetchUsers(page, perPage)));
                 if (arrived) {
                     setPayload(arrived.payload);
