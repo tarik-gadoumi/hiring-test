@@ -35,7 +35,7 @@ const WrapperPagination = styled.div`
     }
 `;
 const MaxWithWrapper = styled.div`
-    border: 3px solid #1CE4A6;
+    outline: 3px solid #1CE4A6;
     max-width: 750px;
     min-width: 460px;
     height: 150px;
@@ -46,7 +46,7 @@ const MaxWithWrapper = styled.div`
     @media (max-width: 460px) {
         min-width: 200px;
         height: 100px;
-        border: none;
+        outline: none;
     }
 `;
 const Centered = styled.div`

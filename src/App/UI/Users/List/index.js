@@ -44,7 +44,7 @@ function App({ mountApp, speedLatency, perPage, ...props }) {
     const [state, mySafeDispatch] = useAsync(asyncCallback, {
         status: users ? 'pending' : 'idle',
     });
-    const { data, status, error } = state;
+    const {  status } = state;
     function handlePrevious() {
         if (page === 1) return;
         mySafeDispatch({ type: 'idle' })
@@ -132,11 +132,11 @@ function UsersList(props) {
                         <div>{`${speedLatency} ms`}</div>
                         <span>
                             {speedLatency > 1200 ? (
-                                <span style={{ backgroundColor: '#DC143C' }}>Bad ❌</span>
+                                <span style={{ backgroundColor: '#DC143C' }}> Bad<span role='img' aria-label='bad'>❌</span> </span>
                             ) : speedLatency > 300 ? (
-                                <span style={{ backgroundColor: 'Yellow' }}>Slow 😔</span>
+                                <span style={{ backgroundColor: 'Yellow' }}>Slow <span role='img' aria-label='sad'>😔</span> </span>
                             ) : (
-                                <span style={{ backgroundColor: 'lightgreen' }}>Good 👍</span>
+                                <span style={{ backgroundColor: 'lightgreen' }}>Good <span role='img' aria-label='good'>👍</span> </span>
                             )}
                         </span>
                     </span>
