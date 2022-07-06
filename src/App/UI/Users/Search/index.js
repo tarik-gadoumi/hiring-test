@@ -17,13 +17,18 @@ function UsersSearch(props) {
     const [query, setQuery] = React.useState('');
     const [queried, setQueried] = React.useState(false);
     // const [value] = useDebounce(query, 300);
-
+    
     const [selected, setSelected] = React.useState(false);
     const [cursor, setCursor] = React.useState(0);
     const downPress = useKeyPress('ArrowDown');
     const upPress = useKeyPress('ArrowUp');
     const enterPress = useKeyPress('Enter');
-
+    if (selected && !queried) {
+        users.length = 0;
+    }
+    if(!query && users) {
+        users.length = 0;
+    }
     function handleChange(e) {
         setQueried(true);
         setQuery(e.target.value);
@@ -71,10 +76,8 @@ function UsersSearch(props) {
         },
         [cursor, enterPress, queried],
     );
-    if (selected && !queried) {
-        users.length = 0;
-    }
-
+   
+    
     return (
         <Wrapper>
             <WrapperIconInput>
@@ -97,7 +100,7 @@ function UsersSearch(props) {
                                           onClick={e => {
                                               setQuery(e.target.textContent);
                                               setQueried(false);
-                                             // return (users.length = 0);
+                                              return (users.length = 0);
                                           }}
                                           style={active ? { background: 'lightgrey' } : null}
                                       >
