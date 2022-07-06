@@ -97,7 +97,7 @@ function UsersSearch(props) {
                                           onClick={e => {
                                               setQuery(e.target.textContent);
                                               setQueried(false);
-                                              return (users.length = 0);
+                                             // return (users.length = 0);
                                           }}
                                           style={active ? { background: 'lightgrey' } : null}
                                       >
