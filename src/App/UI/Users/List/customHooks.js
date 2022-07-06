@@ -70,6 +70,7 @@ function useAsync(asyncCallback, initialState) {
             mySafeDispatch({ type: 'pending' });
             promise.then(
                 dataD => {
+                    console.log('ici data D',dataD)
                     mySafeDispatch({ type: 'resolved', data: dataD });
                 },
                 errorD => {

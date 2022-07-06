@@ -31,18 +31,19 @@ function App({ mountApp, speedLatency, perPage, ...props }) {
         },
         [dynamicNbPage],
     );
-    const [payload, setPayload] = React.useState();
-    const [value] = useDebounce(page, 300);
+    //const [payload, setPayload] = React.useState();
+    //const [value] = useDebounce(page, 300);
     const asyncCallback = React.useCallback(
         () => {
             if (users) {
-                return TransformToPromise(payload);
+                return TransformToPromise(data);
             }
         },
-        [users],
+        [data],
     );
     const [state, mySafeDispatch] = useAsync(asyncCallback);
-    const {status} = state;
+    const {data,status} = state;
+    console.log(status ,'--->', data)
     function handlePrevious() {
         if (page === 1) return;
         mySafeDispatch({ type: 'idle' })
@@ -57,16 +58,18 @@ function App({ mountApp, speedLatency, perPage, ...props }) {
     }
     React.useEffect(
         () => {
+            mySafeDispatch({ type: 'pending' })
             sleep(speedLatency).then(() => {
-                mySafeDispatch({ type: 'pending' })
                 let arrived = dispatch(fetchUsers(new FetchUsers(page, perPage)));
                 if (arrived) {
-                    setPayload(arrived.payload);
-                    mySafeDispatch({ type: 'resolved' })
+                    // setPayload(arrived.payload);
+                    mySafeDispatch({ type: 'resolved' , data :arrived.payload })
+                  
+
                 }
             });
         },
-        [value, perPage],
+        [page, perPage],
     );
     
     return (
@@ -77,8 +80,8 @@ function App({ mountApp, speedLatency, perPage, ...props }) {
                       //is this  one of the use cases where it's okay ?!
                       return <ListInfoFallback key={i} />;
                   })
-                : payload
-                    ? payload.map((value, i, list) => {
+                : data
+                    ? data.map((value, i, list) => {
                           return <ListView key={value.id.value} user={value} />;
                       })
                     : null}
@@ -88,7 +91,7 @@ function App({ mountApp, speedLatency, perPage, ...props }) {
                     <Button onClick={handlePrevious}>Previous</Button>
                     <Page>
                         {' '}
-                        {page} / {payload ? dynamicNbPage : 'Loading...'}{' '}
+                        {page} / {data ? dynamicNbPage : 'Loading...'}{' '}
                     </Page>
                     <Button onClick={handleNext}>Next</Button>
                 </Pagination>
