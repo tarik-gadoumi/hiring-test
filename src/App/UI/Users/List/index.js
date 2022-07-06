@@ -31,7 +31,7 @@ function App({ mountApp, speedLatency, perPage, ...props }) {
         },
         [dynamicNbPage],
     );
-    //const [payload, setPayload] = React.useState();
+
     //const [value] = useDebounce(page, 300);
     const asyncCallback = React.useCallback(
         () => {
@@ -62,10 +62,7 @@ function App({ mountApp, speedLatency, perPage, ...props }) {
             sleep(speedLatency).then(() => {
                 let arrived = dispatch(fetchUsers(new FetchUsers(page, perPage)));
                 if (arrived) {
-                    // setPayload(arrived.payload);
                     mySafeDispatch({ type: 'resolved' , data :arrived.payload })
-                  
-
                 }
             });
         },
