@@ -36,11 +36,8 @@ function UsersSearch(props) {
 
     React.useEffect(
         () => {
-            if (!query && !users) {
+            if (!query) {
                 return;
-            }
-            if (users && !query) {
-                users.length = 0;
             }
             if (queried && query) {
                 dispatch(filterUsers(new FilterUsers(query, 10)));
